@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Trigger Random</title>
+  <title>Pyschic Game</title>
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Added link to the jQuery Library -->
@@ -16,7 +16,7 @@
 
   <div class="jumbotron">
 
-    <h1 class="text-center">Generate a Number Between 1-10 (You wont be able to see it, but you're gonna have to guess it!)</h1>
+    <h1 class="text-center">Generate a Number Between 1-10 (You wont be able to see it, You get 5 guesses!)</h1>
 
     <div class="text-center">
 
@@ -35,6 +35,11 @@
       <div id="guess-Screen" class="card">
         <h4 class="card-header">Put Guess Here!</h4>
         <div class="card-body">
+            <form action="/action_page.php">
+              Number: <input type="int" id = "input-Number" name="Number" value=""><br>
+             
+              <input type="submit" id = "submit" value="Submit">
+              </form>
           <div class="text-center">
             
               
@@ -44,7 +49,7 @@
       <div id="wins-Screen" class="card">
         <h4 class="card-header">Wins</h4>
         <div class="card-body">
-          <div class="text-center">
+          <div class="text-center" id = "winsTextCenter">
             
               
           </div>
@@ -79,17 +84,34 @@
   <script type="text/javascript">
 
     $(document).ready(function() {
-
+      var random = Math.floor(Math.random() * 10) + 1;
+      var winCounter = 0;
       // CREATE THE MISSING CODE HERE. Your code should add content to the random-number div.
       // ...
       $("#random-button").on("click", function() {
-        var random = Math.floor(Math.random() * 10) + 1;
+      random = Math.floor(Math.random() * 10) + 1;
        //$("#random-number").text(random); 
        console.log(random);
 
       });
+    $("#submit").on("click", function(e) {
+      e.preventDefault();
+      var inputNum = $("#input-Number").val();
+      console.log(inputNum, random);
+      if (inputNum == random) {
+      winCounter++;
+      $("#winsTextCenter").text(winCounter);
+      random = Math.floor(Math.random() * 10) + 1;
+      $("#input-Number").val("");
+      
+      }
+      else {
+        
+      }
+
+       
+    });
  
-   
 
       // ...
 
