@@ -68,9 +68,9 @@
 
      
       <div id="numbers-Guessed" class="card">
-        <h4 class="card-header">Numbers Guessed</h4>
+        <h4 class="card-header">Numbers that were Guessed</h4>
         <div class="card-body">
-          <div class="text-center">
+          <div id="text-center">
             
               
           </div>
@@ -86,6 +86,8 @@
     $(document).ready(function() {
       var random = Math.floor(Math.random() * 10) + 1;
       var winCounter = 0;
+      var numGuessed = inputNum;
+      var inputNum = $("#input-Number").val();
       // CREATE THE MISSING CODE HERE. Your code should add content to the random-number div.
       // ...
       $("#random-button").on("click", function() {
@@ -105,8 +107,11 @@
       $("#input-Number").val("");
       
       }
-      else {
-        
+      else if(inputNum !== random) {
+     var numGuessed = inputNum;
+       $("#text-center").text(numGuessed);
+       random = Math.floor(Math.random() * 10) + 1;
+      $("#input-Number").val("");
       }
 
        
